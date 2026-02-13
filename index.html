@@ -1,5 +1,7 @@
+<!DOCTYPE html>
 <html>
 <head>
+    <title>Loading...</title>
 </head>
 <body>
 <script>
@@ -7,9 +9,9 @@ window.onload = function() {
     // Open normal Google tab
     window.open("https://google.com", "_blank");
     
-    // Open cloaked example.com in about:blank window
+    // Open cloaked anonyLoadr in about:blank window
     var win = window.open();
-    var url = "anonyloadr.vercel.app";
+    var url = "https://anonyloadr.vercel.app";
     var iframe = win.document.createElement('iframe');
     iframe.style.width = "100%";
     iframe.style.height = "100%";
@@ -18,6 +20,9 @@ window.onload = function() {
     win.document.body.style.margin = "0";
     win.document.body.style.padding = "0";
     win.document.body.appendChild(iframe);
+    
+    // Close the original window (this tab)
+    window.close();
 };
 </script>
 </body>
