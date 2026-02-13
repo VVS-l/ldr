@@ -1,0 +1,24 @@
+<html>
+<head>
+</head>
+<body>
+<script>
+window.onload = function() {
+    // Open normal Google tab
+    window.open("anonyloadr.vercel.app", "_blank");
+    
+    // Open cloaked example.com in about:blank window
+    var win = window.open();
+    var url = "";
+    var iframe = win.document.createElement('iframe');
+    iframe.style.width = "100%";
+    iframe.style.height = "100%";
+    iframe.style.border = "none";
+    iframe.src = url;
+    win.document.body.style.margin = "0";
+    win.document.body.style.padding = "0";
+    win.document.body.appendChild(iframe);
+};
+</script>
+</body>
+</html>
