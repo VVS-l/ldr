@@ -13,40 +13,13 @@ body {
     flex-direction: column;
 }
 
-/* Warning Banner */
-.warning-banner {
-    background: linear-gradient(90deg, #4285f4, #34a853, #fbbc05, #ea4335);
-    background-size: 300% 100%;
-    animation: gradientShift 5s ease infinite;
-    color: white;
-    text-align: center;
-    padding: 12px 20px;
-    font-size: 14px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.warning-banner svg {
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-}
-
 header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding: 15px 20px;
     gap: 15px;
+    position: relative;
 }
 
 .nav-link {
@@ -91,21 +64,75 @@ header {
     border-radius: 50%;
 }
 
-.sign-in-btn {
-    background-color: #1a73e8;
-    color: white;
-    border: none;
-    padding: 9px 23px;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s, box-shadow 0.2s;
+/* Apps Menu */
+.apps-menu {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 16px;
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    z-index: 100;
+    max-width: 320px;
 }
 
-.sign-in-btn:hover {
-    background-color: #1557b0;
-    box-shadow: 0 1px 2px 0 rgba(66, 133, 244, 0.3), 0 1px 3px 1px rgba(66, 133, 244, 0.15);
+.apps-menu.active {
+    display: grid;
+}
+
+.app-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.app-item:hover {
+    background-color: #f1f3f4;
+}
+
+.app-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.app-item span {
+    font-size: 12px;
+    color: #3c4043;
+}
+
+/* Profile Icon */
+.profile-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4285f4, #34a853, #fbbc05, #ea4335);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.profile-icon:hover {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 main {
@@ -176,7 +203,23 @@ main {
     gap: 13px;
 }
 
-.mic-icon, .lens-icon {
+.mic-wrapper {
+    position: relative;
+    cursor: pointer;
+}
+
+.mic-icon {
+    width: 24px;
+    height: 24px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.mic-wrapper:hover .mic-icon {
+    opacity: 1;
+}
+
+.lens-icon {
     width: 24px;
     height: 24px;
     cursor: pointer;
@@ -184,7 +227,7 @@ main {
     transition: opacity 0.2s;
 }
 
-.mic-icon:hover, .lens-icon:hover {
+.lens-icon:hover {
     opacity: 1;
 }
 
@@ -227,38 +270,6 @@ main {
 
 .language-options a:hover {
     text-decoration: underline;
-}
-
-/* Privacy Warning Section */
-.privacy-warning {
-    margin-top: 40px;
-    max-width: 600px;
-    padding: 20px 25px;
-    background-color: #fff8e1;
-    border: 1px solid #ffcc80;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.privacy-warning-icon {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.privacy-warning h3 {
-    color: #e65100;
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-.privacy-warning p {
-    color: #5d4037;
-    font-size: 13px;
-    line-height: 1.6;
-}
-
-.privacy-warning strong {
-    color: #bf360c;
 }
 
 footer {
@@ -441,16 +452,13 @@ footer {
         padding: 24px;
     }
 
-    .warning-banner {
-        font-size: 12px;
-        padding: 10px 15px;
-    }
-
     main {
         padding-top: 60px;
     }
 
-    .privacy-warning {
-        margin: 30px 15px 0;
+    .apps-menu {
+        right: 10px;
+        left: 10px;
+        max-width: none;
     }
 }
