@@ -10,8 +10,8 @@
 </head>
 <body>
     <header>
-        <a href="#" class="nav-link">Gmail</a>
-        <a href="#" class="nav-link">Images</a>
+        <a href="https://mail.google.com" class="nav-link">Gmail</a>
+        <a href="https://www.google.com/imghp" class="nav-link">Images</a>
         <div class="apps-icon" id="appsIcon" title="Google apps">
             <div class="apps-grid">
                 <div class="apps-dot"></div>
@@ -25,49 +25,51 @@
                 <div class="apps-dot"></div>
             </div>
         </div>
-        <div class="apps-menu" id="appsMenu">
-            <a href="https://myaccount.google.com" class="app-item">
-                <div class="app-icon" style="background-color: #4285f4;">A</div>
-                <span>Account</span>
-            </a>
-            <a href="https://www.google.com" class="app-item">
-                <div class="app-icon" style="background: conic-gradient(from 0deg, #4285f4, #34a853, #fbbc05, #ea4335, #4285f4); border-radius: 50%;"></div>
-                <span>Search</span>
-            </a>
-            <a href="https://www.google.com/maps" class="app-item">
-                <div class="app-icon" style="background-color: #ea4335;">M</div>
-                <span>Maps</span>
-            </a>
-            <a href="https://www.youtube.com" class="app-item">
-                <div class="app-icon" style="background-color: #ff0000;">▶</div>
-                <span>YouTube</span>
-            </a>
-            <a href="https://play.google.com" class="app-item">
-                <div class="app-icon" style="background: conic-gradient(from 0deg, #4285f4, #34a853, #fbbc05, #ea4335);">▶</div>
-                <span>Play</span>
-            </a>
-            <a href="https://mail.google.com" class="app-item">
-                <div class="app-icon" style="background-color: #ea4335;">@</div>
-                <span>Gmail</span>
-            </a>
-            <a href="https://drive.google.com" class="app-item">
-                <div class="app-icon" style="background: linear-gradient(135deg, #fbbc05, #ea4335);">D</div>
-                <span>Drive</span>
-            </a>
-            <a href="https://calendar.google.com" class="app-item">
-                <div class="app-icon" style="background-color: #4285f4;">31</div>
-                <span>Calendar</span>
-            </a>
-        </div>
         <div class="profile-icon" title="Google Account">
             <span>G</span>
         </div>
     </header>
 
+    <!-- Apps Menu (outside header like Google) -->
+    <div class="apps-menu" id="appsMenu">
+        <a href="https://myaccount.google.com" class="app-item">
+            <div class="app-icon" style="background-color: #4285f4;">A</div>
+            <span>Account</span>
+        </a>
+        <a href="https://www.google.com" class="app-item">
+            <div class="app-icon" style="background: conic-gradient(from 0deg, #4285f4, #34a853, #fbbc05, #ea4335, #4285f4); border-radius: 50%;"></div>
+            <span>Search</span>
+        </a>
+        <a href="https://www.google.com/maps" class="app-item">
+            <div class="app-icon" style="background-color: #ea4335;">M</div>
+            <span>Maps</span>
+        </a>
+        <a href="https://www.youtube.com" class="app-item">
+            <div class="app-icon" style="background-color: #ff0000;">▶</div>
+            <span>YouTube</span>
+        </a>
+        <a href="https://play.google.com" class="app-item">
+            <div class="app-icon" style="background: conic-gradient(from 0deg, #4285f4, #34a853, #fbbc05, #ea4335);">▶</div>
+            <span>Play</span>
+        </a>
+        <a href="https://mail.google.com" class="app-item">
+            <div class="app-icon" style="background-color: #ea4335;">@</div>
+            <span>Gmail</span>
+        </a>
+        <a href="https://drive.google.com" class="app-item">
+            <div class="app-icon" style="background: linear-gradient(135deg, #fbbc05, #ea4335);">D</div>
+            <span>Drive</span>
+        </a>
+        <a href="https://calendar.google.com" class="app-item">
+            <div class="app-icon" style="background-color: #4285f4;">31</div>
+            <span>Calendar</span>
+        </a>
+    </div>
+
     <main>
-        <div class="logo-container">
+        <div class="logo-container" id="logoContainer">
             <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" 
-                 alt="Google" class="google-logo">
+                 alt="Google" class="google-logo" id="googleLogo" crossorigin="anonymous">
         </div>
 
         <div class="search-container">
@@ -75,7 +77,7 @@
                 <svg class="search-icon" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path fill="#9aa0a6" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
                 </svg>
-                <input type="text" class="search-input" id="searchInput" autofocus autocomplete="off">
+                <input type="text" class="search-input" id="searchInput" autofocus autocomplete="off" aria-label="Search">
                 <div class="search-icons-right">
                     <div class="mic-wrapper" title="Search by voice">
                         <svg class="mic-icon" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -83,7 +85,7 @@
                             <path fill="#34a853" d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
                         </svg>
                     </div>
-                    <svg class="lens-icon" focusable="false" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="lens-icon" focusable="false" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" title="Search by image">
                         <rect fill="none" height="192" width="192"/>
                         <g>
                             <circle fill="#34A853" cx="144.07" cy="144" r="16"/>
