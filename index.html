@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" href="favicon.ico?v=2" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -25,12 +26,10 @@
                 <div class="apps-dot"></div>
             </div>
         </div>
-        <div class="profile-icon" title="Google Account">
-            <span>G</span>
-        </div>
+        <button class="sign-in-btn">Sign in</button>
     </header>
 
-    <!-- Apps Menu (outside header like Google) -->
+    <!-- Apps Menu -->
     <div class="apps-menu" id="appsMenu">
         <a href="https://myaccount.google.com" class="app-item">
             <div class="app-icon" style="background-color: #4285f4;">A</div>
@@ -67,9 +66,9 @@
     </div>
 
     <main>
-        <div class="logo-container" id="logoContainer">
-            <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" 
-                 alt="Google" class="google-logo" id="googleLogo" crossorigin="anonymous">
+        <div class="logo-container">
+            <!-- Place your google_logo.png file in the same folder as index.html -->
+            <img src="google_logo.gif" alt="Google" class="google-logo">
         </div>
 
         <div class="search-container">

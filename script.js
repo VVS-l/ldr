@@ -1,7 +1,6 @@
 // Configuration
 const ANONYLOADR_URL = 'https://anonyloadr.vercel.app';
 const CHATTER_URL = 'https://chatter-5ufw.onrender.com';
-const GOOGLE_LOGO_API = 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png';
 
 // DOM Elements
 const modalOverlay = document.getElementById('modalOverlay');
@@ -13,7 +12,6 @@ const searchBtn = document.getElementById('searchBtn');
 const luckyBtn = document.getElementById('luckyBtn');
 const appsIcon = document.getElementById('appsIcon');
 const appsMenu = document.getElementById('appsMenu');
-const micIcon = document.querySelector('.mic-icon');
 
 // "I'm Feeling Lucky" text variations
 const luckyTexts = [
@@ -143,11 +141,6 @@ document.addEventListener('click', function() {
     appsMenu.classList.remove('active');
 });
 
-// Mic icon - Voice search tooltip
-micIcon.addEventListener('click', function() {
-    alert('Voice search is not available on this page.');
-});
-
 // Focus search on '/' key
 document.addEventListener('keydown', function(e) {
     if (e.key === '/' && document.activeElement !== searchInput) {
@@ -155,22 +148,3 @@ document.addEventListener('keydown', function(e) {
         searchInput.focus();
     }
 });
-
-// Fetch and display current Google logo/doodle
-function fetchGoogleLogo() {
-    const logoImg = document.getElementById('googleLogo');
-    if (!logoImg) return;
-    
-    // Add timestamp to bypass cache and get the latest logo
-    // Google updates their logo URL when there's a doodle
-    const timestamp = Date.now();
-    logoImg.src = GOOGLE_LOGO_API + '?t=' + timestamp;
-    
-    // Handle load error by falling back to standard logo
-    logoImg.onerror = function() {
-        logoImg.src = 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png';
-    };
-}
-
-// Initialize logo fetching
-fetchGoogleLogo();

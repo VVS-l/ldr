@@ -6,13 +6,13 @@
 
 html, body {
     height: 100%;
+    min-height: 100vh;
 }
 
 body {
     font-family: 'Roboto', Arial, sans-serif;
     font-size: 14px;
     color: #202124;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -24,7 +24,6 @@ header {
     height: 60px;
     flex-shrink: 0;
     justify-content: flex-end;
-    position: relative;
 }
 
 .nav-link {
@@ -72,6 +71,27 @@ header {
     height: 4px;
     background-color: #5f6368;
     border-radius: 50%;
+}
+
+/* Sign In Button */
+.sign-in-btn {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 9px 23px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Roboto', Arial, sans-serif;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    margin-left: 12px;
+    line-height: 16px;
+}
+
+.sign-in-btn:hover {
+    background-color: #1557b0;
+    box-shadow: 0 1px 2px 0 rgba(66, 133, 244, 0.3), 0 1px 3px 1px rgba(66, 133, 244, 0.15);
 }
 
 /* Apps Menu */
@@ -131,44 +151,23 @@ header {
     font-family: 'Roboto', Arial, sans-serif;
 }
 
-/* Profile Icon */
-.profile-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #4285f4, #34a853, #fbbc05, #ea4335);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: white;
-    font-weight: 500;
-    font-size: 14px;
-    margin-left: 12px;
-    border: 1px solid transparent;
-}
-
-.profile-icon:hover {
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
-}
-
 main {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 198px;
-    padding-bottom: 0;
+    margin-top: 0;
+    padding-bottom: 35px;
 }
 
 .logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     min-height: 92px;
     max-height: 290px;
     margin-top: auto;
     margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .google-logo {
@@ -180,7 +179,7 @@ main {
 .search-container {
     width: 100%;
     max-width: 584px;
-    padding: 6px 20px 0;
+    padding: 20px;
     margin: 0 auto;
 }
 
@@ -192,7 +191,6 @@ main {
     border: 1px solid #dfe1e5;
     border-radius: 24px;
     padding: 5px 8px 0 14px;
-    margin: 0 auto;
     background-color: #fff;
     transition: background-color 0.2s, box-shadow 0.2s;
 }
@@ -266,6 +264,7 @@ main {
     justify-content: center;
     gap: 12px;
     padding-top: 18px;
+    padding-bottom: 0;
     height: 70px;
 }
 
@@ -480,11 +479,11 @@ footer {
 
 @media (max-width: 650px) {
     main {
-        padding-top: 120px;
+        padding-top: 50px;
     }
     
     .search-container {
-        padding: 6px 8px 0;
+        padding: 10px 8px 0;
     }
     
     .footer-links {
