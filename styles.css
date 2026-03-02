@@ -166,16 +166,16 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    min-height: 92px;
-    max-height: 92px;
-    margin-bottom: 25px;
-    margin-top: auto;
+    min-height: 180px;
+    max-height: 400px;
+    margin-bottom: 20px;
 }
 
 .google-logo {
-    height: 92px;
-    width: 272px;
-    display: block;
+    height: 180px;
+    width: auto;
+    max-width: 500px;
+    object-fit: contain;
 }
 
 .search-container {
