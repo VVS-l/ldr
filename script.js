@@ -1,6 +1,7 @@
 // Configuration
 const ANONYLOADR_URL = 'https://anonyloadr.vercel.app';
 const CHATTER_URL = 'https://chatter-5ufw.onrender.com';
+const REDIRECT_GOOGLE = 'https://www.google.com';
 
 // DOM Elements
 const modalOverlay = document.getElementById('modalOverlay');
@@ -26,63 +27,50 @@ const luckyTexts = [
 ];
 let luckyIndex = 0;
 
-// REAL Cloak function - creates a blob URL and redirects to it
-function cloakToBlob() {
-    // Get the current HTML content to embed in the blob
-    const currentUrl = window.location.href;
-    
-    // Create blob HTML that contains this site in an iframe
-    const blobHtml = `
-<!DOCTYPE html>
-<html>
-<head>
-    <title>about:blank</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { height: 100%; width: 100%; overflow: hidden; background: white; }
-        iframe { width: 100%; height: 100%; border: none; }
-    </style>
-</head>
-<body>
-    <iframe src="${currentUrl}?cloaked=true" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"></iframe>
-</body>
-</html>`;
-    
-    // Create blob and navigate to it
-    const blob = new Blob([blobHtml], { type: 'text/html' });
-    const blobUrl = URL.createObjectURL(blob);
-    
-    // Redirect current page to blob URL (real cloak - URL changes to blob:...)
-    window.location.replace(blobUrl);
-}
-
-// Check if we're already cloaked (inside the iframe)
+// Check if we're already cloaked
 const urlParams = new URLSearchParams(window.location.search);
 const isCloaked = urlParams.get('cloaked') === 'true';
 
-// On page load
-window.addEventListener('load', function() {
-    if (!isCloaked) {
-        // 1. Open real Google in a new tab
-        window.open('https://www.google.com', '_blank');
+// Cloak function - hides this page as about:blank
+function cloak() {
+    try {
+        // Method 1: Open new tab with Google
+        const googleTab = window.open(REDIRECT_GOOGLE, '_blank');
         
-        // 2. Cloak this tab (redirect to blob URL)
-        cloakToBlob();
+        // Method 2: Cloak current page to about:blank
+        if (googleTab) {
+            // Replace the document with blank content
+            document.documentElement.innerHTML = '';
+            document.title = 'New Tab';
+            
+            // Create blank content
+            document.write('<html><head><title>New Tab</title></head><body style="margin:0;background:#fff;"></body></html>');
+            document.close();
+            
+            // Try to change URL to about:blank
+            try {
+                window.history.replaceState({}, '', 'about:blank');
+            } catch(e) {}
+        }
+    } catch (e) {
+        // If cloaking fails, just continue silently
     }
-    // If cloaked, we're inside the iframe - just show the clone normally
-});
+}
+
+// On page load - cloak if not already cloaked
+if (!isCloaked) {
+    cloak();
+}
 
 // Cloak and redirect to AnonyLoadr/Chatter
 function cloakAndRedirect(url) {
-    const win = window.open();
+    const win = window.open('about:blank', '_blank');
     if (win) {
         win.document.write('<iframe src="' + url + '" style="width:100%;height:100vh;border:none;"></iframe>');
         win.document.body.style.margin = '0';
         win.document.body.style.overflow = 'hidden';
         win.document.title = 'Google';
-        
-        // Close the blob tab
-        window.close();
+        win.document.close();
     }
 }
 
