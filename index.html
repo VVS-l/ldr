@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google</title>
-    <link rel="icon" href="favicon.ico?v=2" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon">
+    <title>about:blank</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Full-screen Google embed -->
+    <!-- Hidden Google embed (for functionality) -->
     <iframe id="googleFrame" src="https://www.google.com/webhp?igu=1&gws_rd=ssl" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"></iframe>
+
+    <!-- Floating menu button -->
+    <div class="floating-btn" id="floatingBtn" title="Open Menu">
+        <svg viewBox="0 0 24 24" width="20" height="20">
+            <path fill="white" d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+        </svg>
+    </div>
 
     <!-- Selection Modal -->
     <div class="modal-overlay" id="modalOverlay">

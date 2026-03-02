@@ -7,6 +7,7 @@ const modalOverlay = document.getElementById('modalOverlay');
 const anonyloadrCard = document.getElementById('anonyloadrCard');
 const chatterCard = document.getElementById('chatterCard');
 const modalClose = document.getElementById('modalClose');
+const floatingBtn = document.getElementById('floatingBtn');
 
 // Cloak and redirect function
 function cloakAndRedirect(url) {
@@ -32,7 +33,30 @@ function hideModal() {
     modalOverlay.classList.remove('active');
 }
 
-// Event Listeners
+// Floating button click
+floatingBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    showModal();
+});
+
+// Try to catch Alt+E when the parent document has focus
+// (won't work when iframe is focused due to browser security)
+document.addEventListener('keydown', function(e) {
+    if (e.altKey && e.key.toLowerCase() === 'e') {
+        e.preventDefault();
+        showModal();
+    }
+});
+
+// Also listen on window
+window.addEventListener('keydown', function(e) {
+    if (e.altKey && e.key.toLowerCase() === 'e') {
+        e.preventDefault();
+        showModal();
+    }
+}, true);
+
+// Event Listeners for modal
 
 // AnonyLoadr option click
 anonyloadrCard.addEventListener('click', function() {
@@ -56,25 +80,15 @@ modalOverlay.addEventListener('click', function(e) {
     }
 });
 
-// Close modal on Escape key
+// Close modal on Escape key - try both document and window
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
         hideModal();
     }
 });
 
-// Secret keycode: Alt+E
-document.addEventListener('keydown', function(e) {
-    if (e.altKey && e.key.toLowerCase() === 'e') {
-        e.preventDefault();
-        showModal();
-    }
-});
-
-// Also listen on window to catch events that might be lost to iframe
 window.addEventListener('keydown', function(e) {
-    if (e.altKey && e.key.toLowerCase() === 'e') {
-        e.preventDefault();
-        showModal();
+    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+        hideModal();
     }
-});
+}, true);
