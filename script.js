@@ -7,9 +7,72 @@ const modalOverlay = document.getElementById('modalOverlay');
 const anonyloadrCard = document.getElementById('anonyloadrCard');
 const chatterCard = document.getElementById('chatterCard');
 const modalClose = document.getElementById('modalClose');
-const floatingBtn = document.getElementById('floatingBtn');
+const searchInput = document.getElementById('searchInput');
+const searchBtn = document.getElementById('searchBtn');
+const luckyBtn = document.getElementById('luckyBtn');
+const appsIcon = document.getElementById('appsIcon');
+const appsMenu = document.getElementById('appsMenu');
 
-// Cloak and redirect function
+// "I'm Feeling Lucky" text variations
+const luckyTexts = [
+    "I'm Feeling Lucky",
+    "I'm Feeling Curious",
+    "I'm Feeling Playful",
+    "I'm Feeling Artistic",
+    "I'm Feeling Doodley",
+    "I'm Feeling Hungry",
+    "I'm Feeling Stellar",
+    "I'm Feeling Trendy"
+];
+let luckyIndex = 0;
+
+// REAL Cloak function - creates a blob URL and redirects to it
+function cloakToBlob() {
+    // Get the current HTML content to embed in the blob
+    const currentUrl = window.location.href;
+    
+    // Create blob HTML that contains this site in an iframe
+    const blobHtml = `
+<!DOCTYPE html>
+<html>
+<head>
+    <title>about:blank</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; width: 100%; overflow: hidden; background: white; }
+        iframe { width: 100%; height: 100%; border: none; }
+    </style>
+</head>
+<body>
+    <iframe src="${currentUrl}?cloaked=true" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"></iframe>
+</body>
+</html>`;
+    
+    // Create blob and navigate to it
+    const blob = new Blob([blobHtml], { type: 'text/html' });
+    const blobUrl = URL.createObjectURL(blob);
+    
+    // Redirect current page to blob URL (real cloak - URL changes to blob:...)
+    window.location.replace(blobUrl);
+}
+
+// Check if we're already cloaked (inside the iframe)
+const urlParams = new URLSearchParams(window.location.search);
+const isCloaked = urlParams.get('cloaked') === 'true';
+
+// On page load
+window.addEventListener('load', function() {
+    if (!isCloaked) {
+        // 1. Open real Google in a new tab
+        window.open('https://www.google.com', '_blank');
+        
+        // 2. Cloak this tab (redirect to blob URL)
+        cloakToBlob();
+    }
+    // If cloaked, we're inside the iframe - just show the clone normally
+});
+
+// Cloak and redirect to AnonyLoadr/Chatter
 function cloakAndRedirect(url) {
     const win = window.open();
     if (win) {
@@ -18,8 +81,8 @@ function cloakAndRedirect(url) {
         win.document.body.style.overflow = 'hidden';
         win.document.title = 'Google';
         
-        // Replace this page with Google
-        window.location.replace('https://google.com');
+        // Close the blob tab
+        window.close();
     }
 }
 
@@ -33,30 +96,48 @@ function hideModal() {
     modalOverlay.classList.remove('active');
 }
 
-// Floating button click
-floatingBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    showModal();
-});
+// Google Search function
+function performSearch() {
+    const query = searchInput.value.trim();
+    if (query) {
+        window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(query);
+    }
+}
 
-// Try to catch Alt+E when the parent document has focus
-// (won't work when iframe is focused due to browser security)
-document.addEventListener('keydown', function(e) {
-    if (e.altKey && e.key.toLowerCase() === 'e') {
-        e.preventDefault();
-        showModal();
+// "I'm Feeling Lucky" function
+function feelingLucky() {
+    const query = searchInput.value.trim();
+    if (query) {
+        window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(query) + '&btnI=I';
+    } else {
+        window.location.href = 'https://www.google.com/doodles';
+    }
+}
+
+// Event Listeners
+
+// Search on Enter key
+searchInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        performSearch();
     }
 });
 
-// Also listen on window
-window.addEventListener('keydown', function(e) {
-    if (e.altKey && e.key.toLowerCase() === 'e') {
-        e.preventDefault();
-        showModal();
-    }
-}, true);
+// Google Search button click
+searchBtn.addEventListener('click', performSearch);
 
-// Event Listeners for modal
+// I'm Feeling Lucky button
+luckyBtn.addEventListener('click', feelingLucky);
+
+// I'm Feeling Lucky hover text rotation
+luckyBtn.addEventListener('mouseenter', function() {
+    luckyIndex = (luckyIndex + 1) % luckyTexts.length;
+    luckyBtn.textContent = luckyTexts[luckyIndex];
+});
+
+luckyBtn.addEventListener('mouseleave', function() {
+    luckyBtn.textContent = "I'm Feeling Lucky";
+});
 
 // AnonyLoadr option click
 anonyloadrCard.addEventListener('click', function() {
@@ -80,15 +161,36 @@ modalOverlay.addEventListener('click', function(e) {
     }
 });
 
-// Close modal on Escape key - try both document and window
+// Close modal on Escape key
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
         hideModal();
     }
 });
 
-window.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-        hideModal();
+// Secret keycode: Alt+E
+document.addEventListener('keydown', function(e) {
+    if (e.altKey && e.key.toLowerCase() === 'e') {
+        e.preventDefault();
+        showModal();
     }
-}, true);
+});
+
+// Apps menu toggle
+appsIcon.addEventListener('click', function(e) {
+    e.stopPropagation();
+    appsMenu.classList.toggle('active');
+});
+
+// Close apps menu when clicking outside
+document.addEventListener('click', function() {
+    appsMenu.classList.remove('active');
+});
+
+// Focus search on '/' key
+document.addEventListener('keydown', function(e) {
+    if (e.key === '/' && document.activeElement !== searchInput) {
+        e.preventDefault();
+        searchInput.focus();
+    }
+});
