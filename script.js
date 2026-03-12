@@ -1,6 +1,6 @@
 // Configuration
 const ANONYLOADR_URL = 'https://anonyloadr.vercel.app';
-const CHATTER_URL = 'https://mvhs.dedyn.io';
+const CHATTER_URL = 'http://mvhs.dedyn.io';
 
 // DOM Elements
 const modalOverlay = document.getElementById('modalOverlay');
