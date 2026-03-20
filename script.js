@@ -1,11 +1,13 @@
 // Configuration
 const ANONYLOADR_URL = 'https://anonyloadr.vercel.app';
 const CHATTER_URL = 'https://chatter-5ufw.onrender.com';
+const AETHERIA_URL = 'https://chatter-5ufw.onrender.com/aetheria/';
 
 // DOM Elements
 const modalOverlay = document.getElementById('modalOverlay');
 const anonyloadrCard = document.getElementById('anonyloadrCard');
 const chatterCard = document.getElementById('chatterCard');
+const aetheriaCard = document.getElementById('aetheriaCard');
 const modalClose = document.getElementById('modalClose');
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
@@ -103,6 +105,11 @@ chatterCard.addEventListener('click', function() {
     cloakAndRedirect(CHATTER_URL);
 });
 
+// Aetheria option click (NEW)
+aetheriaCard.addEventListener('click', function() {
+    cloakAndRedirect(AETHERIA_URL);
+});
+
 // Close modal button
 modalClose.addEventListener('click', function() {
     hideModal();
@@ -147,4 +154,16 @@ document.addEventListener('keydown', function(e) {
         e.preventDefault();
         searchInput.focus();
     }
+});
+
+// Add hover sound effects (optional enhancement)
+const optionCards = document.querySelectorAll('.option-card');
+optionCards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-4px) scale(1.02)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+    });
 });

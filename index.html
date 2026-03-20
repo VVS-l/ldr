@@ -67,7 +67,6 @@
 
     <main>
         <div class="logo-container">
-            <!-- Place your google_logo.png file in the same folder as index.html -->
             <img src="google_logo.gif" alt="Google" class="google-logo">
         </div>
 
@@ -125,24 +124,61 @@
         </div>
     </footer>
 
-    <!-- Selection Modal -->
+    <!-- Selection Modal - Improved UI -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
-            <h2 class="modal-title">Choose Your Experience</h2>
-            <p class="modal-subtitle">Select where you'd like to go</p>
+            <div class="modal-header">
+                <div class="modal-logo">🚀</div>
+                <h2 class="modal-title">Choose Your Experience</h2>
+                <p class="modal-subtitle">Select where you'd like to go</p>
+            </div>
             <div class="options-container">
+                <!-- AnonyLoadr -->
                 <div class="option-card" id="anonyloadrCard">
-                    <div class="option-icon anonyloadr">🔒</div>
-                    <h3 class="option-title">AnonyLoadr</h3>
-                    <p class="option-description">Access the web anonymously with proxies. Browse without leaving traces.</p>
+                    <div class="option-glow anonyloadr"></div>
+                    <div class="option-content">
+                        <div class="option-icon anonyloadr">🔒</div>
+                        <h3 class="option-title">AnonyLoadr</h3>
+                        <p class="option-description">Access the web anonymously with proxies</p>
+                        <div class="option-features">
+                            <span class="feature-tag">Private</span>
+                            <span class="feature-tag">Secure</span>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Chatter -->
                 <div class="option-card" id="chatterCard">
-                    <div class="option-icon chatter">💬</div>
-                    <h3 class="option-title">Chatter</h3>
-                    <p class="option-description">Connect with friends through messages, group chats, and servers!</p>
+                    <div class="option-glow chatter"></div>
+                    <div class="option-content">
+                        <div class="option-icon chatter">💬</div>
+                        <h3 class="option-title">Chatter</h3>
+                        <p class="option-description">Connect with friends through messages & servers</p>
+                        <div class="option-features">
+                            <span class="feature-tag">Chat</span>
+                            <span class="feature-tag">Community</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aetheria (NEW) -->
+                <div class="option-card" id="aetheriaCard">
+                    <div class="option-glow aetheria"></div>
+                    <div class="option-content">
+                        <div class="option-icon aetheria">🎮</div>
+                        <h3 class="option-title">Aetheria</h3>
+                        <p class="option-description">Launch into gaming with your game library</p>
+                        <div class="option-features">
+                            <span class="feature-tag">Gaming</span>
+                            <span class="feature-tag">Library</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <button class="modal-close" id="modalClose">Cancel</button>
+            <div class="modal-footer">
+                <p class="keyboard-hint">Press <kbd>Alt</kbd> + <kbd>E</kbd> to open this menu</p>
+                <button class="modal-close" id="modalClose">Cancel</button>
+            </div>
         </div>
     </div>
 
